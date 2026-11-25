@@ -59,6 +59,7 @@ h1 span{display:inline-block;opacity:0;filter:blur(14px);transform:translateY(18
 .links a::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,var(--gold),var(--gold-hi));transform:translateY(101%);transition:transform .35s cubic-bezier(.6,0,.2,1);z-index:-1}
 .links a:hover,.links a:focus-visible{color:#0E0D0B;border-color:var(--gold-hi);box-shadow:0 0 28px rgba(240,213,152,.45)}
 .links a:hover::before,.links a:focus-visible::before{transform:none}
+.links a svg{width:18px;height:18px;margin-right:10px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .mail{font-size:15px;letter-spacing:.06em;text-shadow:0 1px 12px #000}
 .hint{position:fixed;left:0;right:0;bottom:54px;text-align:center;font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:var(--grey);pointer-events:none;margin:0}
 .hint.off{opacity:0!important}
@@ -99,10 +100,10 @@ footer a:hover{color:var(--cream)}
     <p class="tag"><span id="tag"></span><span class="caret" aria-hidden="true"></span></p>
     <p class="lead fade f1">Bilderrätsel, Worträtsel und kurze Fälle zum Mitraten. Die Lösung steckt immer im Detail. Schau genau hin.</p>
     <ul class="links fade f2">
-      <li><a href="https://www.instagram.com/geheimkabinett/" rel="noopener">Instagram</a></li>
-      <li><a href="https://www.tiktok.com/@geheimkabinett" rel="noopener">TikTok</a></li>
-      <li><a href="https://www.youtube.com/@geheimkabinett" rel="noopener">YouTube</a></li>
-      <li><a href="https://www.facebook.com/geheimkabinett/" rel="noopener">Facebook</a></li>
+      <li><a href="https://www.instagram.com/geheimkabinett/" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/></svg>Instagram</a></li>
+      <li><a href="https://www.tiktok.com/@geheimkabinett" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg>TikTok</a></li>
+      <li><a href="https://www.youtube.com/@geheimkabinett" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z"/></svg>YouTube</a></li>
+      <li><a href="https://www.facebook.com/geheimkabinett/" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H10l-5 4v-4H4z"/><path d="M8 9h8M8 12h5"/></svg>Facebook</a></li>
     </ul>
     <p class="fade f3"><a class="mail" href="mailto:hallo@geheimkabinett.de">hallo@geheimkabinett.de</a></p>
   </div>
