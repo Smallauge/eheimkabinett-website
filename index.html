@@ -89,7 +89,7 @@ footer .ai{color:var(--grey);margin:0 12px;text-shadow:0 1px 8px #000}
 
 <main class="stage" id="stage">
   <div class="card">
-    <svg class="eye" id="eye" viewBox="0 36 200 130" role="button" tabindex="0" aria-pressed="false" aria-label="Auge schließen oder öffnen">
+    <svg class="eye" id="eye" viewBox="0 36 200 130" role="button" tabindex="0" aria-pressed="false" aria-label="Auge kurz schließen">
       <rect x="0" y="36" width="200" height="130" fill="transparent" pointer-events="all"/>
       <g class="lidgroup" id="lid">
         <clipPath id="almond"><path d="M6 100 Q100 40 194 100 Q100 158 6 100 Z"/></clipPath>
@@ -206,7 +206,9 @@ void main(){
   var lid=document.getElementById('lid'), look=document.getElementById('look'), eye=document.querySelector('.eye');
   function blinkLater(d){if(reduce)return;setTimeout(function(){if(lid.classList.contains('shut')){blinkLater(1500);return;}lid.classList.remove('blink');requestAnimationFrame(function(){requestAnimationFrame(function(){lid.classList.add('blink');});});blinkLater(4000+Math.random()*5000);},d);}
   // Klick aufs Auge: schließen bzw. wieder öffnen
-  function toggleEye(){lid.classList.remove('blink');var shut=lid.classList.toggle('shut');eye.setAttribute('aria-pressed',shut?'true':'false');}
+  var eyeT=0;
+  function setEye(shut){clearTimeout(eyeT);lid.classList.remove('blink');lid.classList.toggle('shut',shut);eye.setAttribute('aria-pressed',shut?'true':'false');if(shut)eyeT=setTimeout(function(){setEye(false);},1600);}
+  function toggleEye(){setEye(!lid.classList.contains('shut'));}
   eye.addEventListener('click',toggleEye);
   eye.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleEye();}});
   function aimEye(x,y){var r=eye.getBoundingClientRect(),dx=x-(r.left+r.width/2),dy=y-(r.top+r.height/2),d=Math.hypot(dx,dy)||1,k=Math.min(1,d/400);
