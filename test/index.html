@@ -37,6 +37,15 @@ h1 em{font-style:normal;color:transparent;-webkit-text-stroke:.018em var(--ink)}
 .go{display:inline-flex;align-items:center;gap:14px;min-height:56px;padding:0 8px 0 24px;border-radius:99px;background:var(--ink);color:var(--bg);text-decoration:none;white-space:nowrap}
 .go i{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--bg);color:var(--ink);font-style:normal;transition:transform .25s}
 .go:hover i{transform:translateY(3px)}
+.what{padding:clamp(72px,14vh,170px) var(--pad);border-top:1px solid var(--line)}
+.what h2{font-weight:600;font-size:clamp(48px,10.5vw,190px);line-height:.84;letter-spacing:-.06em;margin:14px 0 0}
+.what .lead{max-width:30em;margin:clamp(22px,4vh,44px) 0 0;font-size:clamp(17px,1.7vw,26px);line-height:1.35;letter-spacing:-.015em;color:#E4E4E1}
+.what ol{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:clamp(40px,8vh,96px) 0 0;padding:0;list-style:none;border-top:1px solid var(--line-2)}
+.what li{padding:22px clamp(16px,2.4vw,36px) 0 0}
+.what li+li{border-left:1px solid var(--line);padding-left:clamp(16px,2.4vw,36px)}
+.what h3{font-weight:600;font-size:clamp(26px,3.2vw,52px);letter-spacing:-.045em;line-height:1;margin:clamp(18px,5vh,64px) 0 10px}
+.what li p{margin:0;color:#BDBDBA;max-width:22em}
+@media (max-width:860px){.what ol{grid-template-columns:1fr}.what li+li{border-left:0;padding-left:0;border-top:1px solid var(--line);margin-top:22px}.what h3{margin-top:14px}}
 @media (max-width:860px){.hero-foot{grid-template-columns:1fr}.now{display:none}.go{justify-content:space-between}}
 </style>
 </head>
@@ -59,14 +68,24 @@ h1 em{font-style:normal;color:transparent;-webkit-text-stroke:.018em var(--ink)}
 <main>
 <section class="hero" id="hero">
   <div class="still"></div>
-  <video id="bg" muted loop playsinline preload="none" aria-hidden="true"></video>
+  <video id="bg" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture aria-hidden="true"></video>
   <p class="tag mono"><span>Rätsel &amp; Fälle</span><span id="count"></span></p>
   <h1><span class="l"><span>Die Wahrheit</span></span><span class="l"><span>liegt im</span></span><span class="l"><span><em>Verborgenen.</em></span></span></h1>
   <div class="hero-foot">
-    <p>Jeder Fall hat eine Geschichte. Und jede Geschichte hat einen Riss. Ein Detail, das nicht passt. Ein Alibi, das wackelt. Finde den Fehler, bevor es ein anderer tut.</p>
+    <p>Kurze Kriminalfälle zum Mitraten. Jeder Fall hat einen Riss: ein Detail, das nicht passt, ein Alibi, das wackelt. Finde den Fehler, bevor es ein anderer tut.</p>
     <p class="now mono" aria-hidden="true">Im Bild<b>Szenen aus den Fällen</b></p>
-    <a class="go mono" href="#faelle">Zu den Fällen<i aria-hidden="true">↓</i></a>
+    <a class="go mono" href="#was">Worum geht es?<i aria-hidden="true">↓</i></a>
   </div>
+</section>
+<section class="what" id="was">
+  <p class="mono mute">Was ist das hier?</p>
+  <h2>Du bist<br>der Ermittler.</h2>
+  <p class="lead">Das Geheimkabinett sind kurze Kriminalfälle zum Mitraten. Jedes Video zeigt dir alles, was du brauchst. Die Lösung steckt im Bild. Du musst sie nur sehen.</p>
+  <ol>
+    <li><span class="mono mute">01</span><h3>Ansehen</h3><p>Ein Fall, unter einer Minute. Alle Hinweise stecken im Video.</p></li>
+    <li><span class="mono mute">02</span><h3>Lösen</h3><p>Pausieren, zurückspulen, kombinieren. Dann schreibst du deine Lösung in die Kommentare.</p></li>
+    <li><span class="mono mute">03</span><h3>Auflösen</h3><p>Wenig später steht die Auflösung hier, direkt neben dem Fall.</p></li>
+  </ol>
 </section>
 <div id="faelle"></div>
 <section class="follow" id="folgen">
@@ -89,11 +108,17 @@ h1 em{font-style:normal;color:transparent;-webkit-text-stroke:.018em var(--ink)}
 renderFaelle(document.getElementById('faelle'));
 document.getElementById('count').textContent=FAELLE.length+' Fälle im Archiv';
 initEye();
-(function(){ // Hintergrundfilm: passend zum Format, nur wenn Bewegung erwünscht
+(function(){ // Hintergrundfilm: passend zum Format; startet notfalls bei der ersten Berührung (z. B. Stromsparmodus)
   var v=document.getElementById('bg');
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||(navigator.connection&&navigator.connection.saveData)){v.remove();return;}
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){v.remove();return;}
+  v.muted=true;v.defaultMuted=true;v.setAttribute('muted','');
   v.src=window.matchMedia('(min-aspect-ratio:1/1)').matches?'bg-desktop.mp4':'bg-mobile.mp4';
-  v.play().catch(function(){});
+  function go(){var p=v.play();if(p&&p.catch)p.catch(function(){});}
+  v.addEventListener('canplay',go,{once:true});go();
+  ['touchstart','pointerdown','scroll','keydown'].forEach(function(ev){
+    window.addEventListener(ev,function h(){if(v.paused)go();if(!v.paused)window.removeEventListener(ev,h);},{passive:true});
+  });
+  document.addEventListener('visibilitychange',function(){if(!document.hidden&&v.paused)go();});
 })();
 </script>
 </body>

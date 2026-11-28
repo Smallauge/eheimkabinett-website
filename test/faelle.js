@@ -102,5 +102,7 @@ function initEye(){
   window.addEventListener('pointermove',function(e){aim(e.clientX,e.clientY);},{passive:true});
   function set(shut){clearTimeout(T);lid.classList.remove('blink');lid.classList.toggle('shut',shut);if(shut)T=setTimeout(function(){set(false);},1600);}
   eye.addEventListener('click',function(e){e.preventDefault();set(!lid.classList.contains('shut'));});
-  (function blink(d){if(reduce)return;setTimeout(function(){if(!lid.classList.contains('shut')){lid.classList.remove('blink');requestAnimationFrame(function(){requestAnimationFrame(function(){lid.classList.add('blink');});});}blink(4000+Math.random()*5000);},d);})(3000);
+  function wink(){if(lid.classList.contains('shut'))return;lid.classList.remove('blink');requestAnimationFrame(function(){requestAnimationFrame(function(){lid.classList.add('blink');});});}
+  // zwinkert alle 1,8 bis 4,2 Sekunden, ab und zu doppelt
+  (function loop(d){if(reduce)return;setTimeout(function(){wink();if(Math.random()<.3)setTimeout(wink,380);loop(1800+Math.random()*2400);},d);})(1500);
 }
