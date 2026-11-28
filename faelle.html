@@ -123,6 +123,7 @@ footer a:hover{color:var(--cream)}
    Neuer Fall: einen Block kopieren und oben einfügen.
    yt       = YouTube-Video-ID des Rätsels (das hinter "watch?v=")
    loesung  = YouTube-Video-ID der Lösung, oder "" solange es keine gibt
+   loesungText = Lösung als Text (Liste von Absätzen), solange es kein Lösungsvideo gibt
    links    = wo das Rätsel sonst noch läuft
    --------------------------------------------------------------- */
 var FAELLE=[
@@ -133,6 +134,7 @@ var FAELLE=[
   {id:"fall-1",nr:"01",label:"Fall #1",titel:"Das Käse-Foto",
    text:"Ein Dealer schickt ein Foto von einem Stück Käse in einen geheimen Chat. Am Ende bekommt er über 13 Jahre Haft. Was hat ihn verraten?",
    yt:"zsn6kCaG0GQ",loesung:"",
+   loesungText:["Seine Finger. Auf dem Foto liegt der Käse in der offenen Hand, Fingerkuppen und Handfläche sind scharf zu sehen.","Ermittler hatten den verschlüsselten Chat geknackt, lasen mit und glichen die Fingerabdrücke direkt vom Foto ab. Das Urteil: über 13 Jahre Haft.","Laden, Ort und Uhrzeit waren falsche Fährten."],
    links:{YouTube:"https://www.youtube.com/watch?v=zsn6kCaG0GQ",TikTok:"https://www.tiktok.com/@geheimkabinett/video/7712199842747157793",Instagram:"https://www.instagram.com/reel/DgLDvuKP4oJ/",Facebook:"https://www.facebook.com/reel/2262014978049878"}},
   {id:"akte-hamburg",nr:"00",label:"Akte Hamburg",titel:"Die Flut",
    text:"Speicherstadt, 03:10 Uhr, Niedrigwasser. Drei Verdächtige, drei Alibis. Einer lügt.",
@@ -152,8 +154,11 @@ var FAELLE=[
     var raetsel=f.yt
       ? '<button class="play" type="button" data-play="'+esc(f.yt)+'">'+PLAY+'Rätsel ansehen</button><p class="small">Mit dem Klick wird das Video von YouTube geladen.</p>'
       : '<a class="play" href="'+esc(f.links[first])+'" rel="noopener">'+PLAY+'Ansehen auf '+esc(first)+'</a>';
+    var txt=f.loesungText?'<h3 class="serif">Die Lösung</h3>'+f.loesungText.map(function(t){return '<p>'+esc(t)+'</p>';}).join('')+'<p class="small">Das Lösungsvideo folgt.</p>':'';
     var loesung=f.loesung
       ? '<h3 class="serif">Schon selbst gerätselt?</h3><p>Hinter diesem Knopf steht die Auflösung. Danach gibt es kein Zurück.</p><button class="play" type="button" data-play="'+esc(f.loesung)+'">'+PLAY+'Lösung zeigen</button><p class="small">Mit dem Klick wird das Video von YouTube geladen.</p>'
+      : f.loesungText
+      ? '<h3 class="serif">Schon selbst gerätselt?</h3><p>Hinter diesem Knopf steht die Auflösung. Danach gibt es kein Zurück.</p><button class="play" type="button" data-reveal>Lösung zeigen</button>'
       : SHUT+'<h3 class="serif">Die Lösung folgt</h3><p>Dieser Fall ist noch offen. Schreib deine Lösung in die Kommentare und folge uns, damit du die Auflösung nicht verpasst.</p><a class="play ghost" href="#folgen">Folgen</a>';
     var where='<li>Rätsel auf</li>'+Object.keys(f.links).map(function(k){return '<li><a href="'+esc(f.links[k])+'" rel="noopener">'+esc(k)+'</a></li>';}).join('');
 
@@ -172,6 +177,7 @@ var FAELLE=[
       '</div>'+
       '<ul class="where">'+where+'</ul>';
     root.appendChild(el);
+    el._txt=txt;
     el._orig={raetsel:el.querySelector('.pane.raetsel').innerHTML,loesung:el.querySelector('.pane.loesung').innerHTML};
   });
 
@@ -186,6 +192,8 @@ var FAELLE=[
   root.addEventListener('click',function(e){
     var tab=e.target.closest('.switch button');
     if(tab){setView(tab.closest('.case'),tab.dataset.view);return;}
+    var r=e.target.closest('[data-reveal]');
+    if(r){var rc=r.closest('.case');r.closest('.pane').innerHTML=rc._txt;return;}
     var p=e.target.closest('[data-play]');
     if(p){var pane=p.closest('.pane'),c=p.closest('.case');pane.innerHTML=embed(p.dataset.play,c.querySelector('h2').textContent);}
   });
