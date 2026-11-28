@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Geheimkabinett – Jeder Fall ein Rätsel</title>
+<meta name="description" content="Die Wahrheit liegt im Verborgenen. Jeder Fall hat eine Geschichte, und jede Geschichte hat einen Riss. Finde den Fehler, bevor es ein anderer tut.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0A0A0B">
+<meta property="og:title" content="Geheimkabinett – Jeder Fall ein Rätsel">
+<meta property="og:description" content="Die Wahrheit liegt im Verborgenen. Finde den Fehler, bevor es ein anderer tut.">
+<meta property="og:image" content="https://geheimkabinett.de/og.jpg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="site.css">
+<link rel="preload" as="image" href="bg-desktop.jpg" media="(min-aspect-ratio:1/1)">
+<link rel="preload" as="image" href="bg-mobile.jpg" media="(max-aspect-ratio:1/1)">
+<style>
+.hero{position:relative;height:100svh;min-height:560px;display:flex;flex-direction:column;justify-content:flex-end;gap:clamp(18px,3.4vh,40px);padding:0 var(--pad) clamp(22px,4vh,44px);overflow:hidden;isolation:isolate}
+.hero video,.hero .still{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3}
+.hero .still{background:#000 url(bg-mobile.jpg) center/cover}
+@media (min-aspect-ratio:1/1){.hero .still{background-image:url(bg-desktop.jpg)}}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(0deg,rgba(10,10,11,.96) 0%,rgba(10,10,11,.5) 46%,rgba(10,10,11,.38) 100%)}
+.hero::after{content:"";position:absolute;inset:-50%;z-index:-1;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain .9s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-2%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
+.hero .tag{display:flex;gap:18px;color:#CFCFCC}
+h1{font-weight:600;font-size:clamp(46px,min(12.6vw,19vh),230px);line-height:.84;letter-spacing:-.06em;margin:0}
+h1 .l{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em}
+h1 .l>span{display:block;transform:translateY(108%);animation:rise 1s cubic-bezier(.2,.8,.2,1) forwards}
+h1 .l:nth-child(2)>span{animation-delay:.1s}h1 .l:nth-child(3)>span{animation-delay:.2s}
+h1 em{font-style:normal;color:transparent;-webkit-text-stroke:.018em var(--ink)}
+@keyframes rise{to{transform:none}}
+.hero-foot{display:grid;grid-template-columns:minmax(0,34em) 1fr auto;gap:20px clamp(20px,4vw,60px);align-items:end;padding-top:18px;border-top:1px solid var(--line-2)}
+.hero-foot p{margin:0;color:#D6D6D3;font-size:clamp(14.5px,1.15vw,17px)}
+.now{justify-self:end;text-align:right;color:var(--mute)}
+.now b{display:block;font-weight:400;color:var(--ink)}
+.go{display:inline-flex;align-items:center;gap:14px;min-height:56px;padding:0 8px 0 24px;border-radius:99px;background:var(--ink);color:var(--bg);text-decoration:none;white-space:nowrap}
+.go i{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--bg);color:var(--ink);font-style:normal;transition:transform .25s}
+.go:hover i{transform:translateY(3px)}
+@media (max-width:860px){.hero-foot{grid-template-columns:1fr}.now{display:none}.go{justify-content:space-between}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="brand" href="index.html" aria-label="Geheimkabinett – Startseite"><svg class="eye" id="eye" viewBox="0 36 200 130" aria-hidden="true">
+      <g class="lidgroup" id="lid">
+        <clipPath id="almond"><path d="M6 100 Q100 40 194 100 Q100 158 6 100 Z"/></clipPath>
+        <g clip-path="url(#almond)"><g class="look" id="look"><g class="iris">
+          <polygon points="116.97,97.04 145.00,98.00 116.97,98.96" fill="#C9A45C"/><polygon points="116.88,100.00 131.91,103.63 116.55,101.90" fill="#C9A45C"/><polygon points="116.28,102.90 137.02,111.48 115.62,104.71" fill="#C9A45C"/><polygon points="115.18,105.65 125.63,112.80 114.22,107.32" fill="#C9A45C"/><polygon points="113.62,108.17 134.47,126.93 112.38,109.65" fill="#C9A45C"/><polygon points="111.65,110.38 120.83,122.82 110.17,111.62" fill="#C9A45C"/><polygon points="109.32,112.22 119.70,132.12 107.65,113.18" fill="#C9A45C"/><polygon points="106.71,113.62 110.12,125.81 104.90,114.28" fill="#C9A45C"/><polygon points="103.90,114.55 107.81,142.32 102.00,114.88" fill="#C9A45C"/><polygon points="100.96,114.97 100.00,130.40 99.04,114.97" fill="#C9A45C"/><polygon points="98.00,114.88 93.16,136.80 96.10,114.55" fill="#C9A45C"/><polygon points="95.10,114.28 89.88,125.81 93.29,113.62" fill="#C9A45C"/><polygon points="92.35,113.18 77.50,136.97 90.68,112.22" fill="#C9A45C"/><polygon points="89.83,111.62 79.17,122.82 88.35,110.38" fill="#C9A45C"/><polygon points="87.62,109.65 69.82,123.33 86.38,108.17" fill="#C9A45C"/><polygon points="85.78,107.32 74.37,112.80 84.82,105.65" fill="#C9A45C"/><polygon points="84.38,104.71 57.71,113.39 83.72,102.90" fill="#C9A45C"/><polygon points="83.45,101.90 68.09,103.63 83.12,100.00" fill="#C9A45C"/><polygon points="83.03,98.96 60.60,98.00 83.03,97.04" fill="#C9A45C"/><polygon points="83.12,96.00 70.85,92.86 83.45,94.10" fill="#C9A45C"/><polygon points="83.72,93.10 57.71,82.61 84.38,91.29" fill="#C9A45C"/><polygon points="84.82,90.35 71.94,81.80 85.78,88.68" fill="#C9A45C"/><polygon points="86.38,87.83 69.82,72.67 87.62,86.35" fill="#C9A45C"/><polygon points="88.35,85.62 80.97,75.33 89.83,84.38" fill="#C9A45C"/><polygon points="90.68,83.78 77.50,59.03 92.35,82.82" fill="#C9A45C"/><polygon points="93.29,82.38 88.92,67.55 95.10,81.72" fill="#C9A45C"/><polygon points="96.10,81.45 93.16,59.20 98.00,81.12" fill="#C9A45C"/><polygon points="99.04,81.03 100.00,68.40 100.96,81.03" fill="#C9A45C"/><polygon points="102.00,81.12 107.81,53.68 103.90,81.45" fill="#C9A45C"/><polygon points="104.90,81.72 111.08,67.55 106.71,82.38" fill="#C9A45C"/><polygon points="107.65,82.82 119.70,63.88 109.32,83.78" fill="#C9A45C"/><polygon points="110.17,84.38 119.03,75.33 111.65,85.62" fill="#C9A45C"/><polygon points="112.38,86.35 134.47,69.07 113.62,87.83" fill="#C9A45C"/><polygon points="114.22,88.68 128.06,81.80 115.18,90.35" fill="#C9A45C"/><polygon points="115.62,91.29 137.02,84.52 116.28,93.10" fill="#C9A45C"/><polygon points="116.55,94.10 129.15,92.86 116.88,96.00" fill="#C9A45C"/>
+          <circle cx="100" cy="98" r="14" fill="#050403"/>
+          <circle cx="111" cy="87" r="4.5" fill="#ECE6D9"/>
+        </g></g></g>
+        <path class="lidp" d="M6 100 Q100 14 194 100 Q100 40 6 100 Z" fill="#C9A45C"/>
+        <path class="lidp" d="M6 100 Q100 172 194 100 Q100 158 6 100 Z" fill="#C9A45C"/>
+      </g>
+    </svg><b>GEHEIMKABINETT</b></a>
+  <nav class="mono"><a href="faelle.html">Fälle</a><a href="index.html#folgen">Folgen</a></nav>
+</header>
+<main>
+<section class="hero" id="hero">
+  <div class="still"></div>
+  <video id="bg" muted loop playsinline preload="none" aria-hidden="true"></video>
+  <p class="tag mono"><span>Rätsel &amp; Fälle</span><span id="count"></span></p>
+  <h1><span class="l"><span>Die Wahrheit</span></span><span class="l"><span>liegt im</span></span><span class="l"><span><em>Verborgenen.</em></span></span></h1>
+  <div class="hero-foot">
+    <p>Jeder Fall hat eine Geschichte. Und jede Geschichte hat einen Riss. Ein Detail, das nicht passt. Ein Alibi, das wackelt. Finde den Fehler, bevor es ein anderer tut.</p>
+    <p class="now mono" aria-hidden="true">Im Bild<b>Szenen aus den Fällen</b></p>
+    <a class="go mono" href="#faelle">Zu den Fällen<i aria-hidden="true">↓</i></a>
+  </div>
+</section>
+<div id="faelle"></div>
+<section class="follow" id="folgen">
+  <h2>Keine Lösung verpassen.</h2>
+  <ul>
+    <li><a href="https://www.instagram.com/geheimkabinett/" rel="noopener">Instagram<span aria-hidden="true">↗</span></a></li>
+    <li><a href="https://www.tiktok.com/@geheimkabinett" rel="noopener">TikTok<span aria-hidden="true">↗</span></a></li>
+    <li><a href="https://www.youtube.com/@geheimkabinett" rel="noopener">YouTube<span aria-hidden="true">↗</span></a></li>
+    <li><a href="https://www.facebook.com/geheimkabinett/" rel="noopener">Facebook<span aria-hidden="true">↗</span></a></li>
+    <li><a href="mailto:hallo@geheimkabinett.de">E-Mail<span aria-hidden="true">↗</span></a></li>
+  </ul>
+</section>
+</main>
+<footer class="mono">
+  <span><a href="index.html">Start</a><a href="faelle.html">Fälle</a><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></span>
+  <span>© Geheimkabinett · Hamburg · Szenen KI-generiert</span>
+</footer>
+<script src="faelle.js"></script>
+<script>
+renderFaelle(document.getElementById('faelle'));
+document.getElementById('count').textContent=FAELLE.length+' Fälle im Archiv';
+initEye();
+(function(){ // Hintergrundfilm: passend zum Format, nur wenn Bewegung erwünscht
+  var v=document.getElementById('bg');
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||(navigator.connection&&navigator.connection.saveData)){v.remove();return;}
+  v.src=window.matchMedia('(min-aspect-ratio:1/1)').matches?'bg-desktop.mp4':'bg-mobile.mp4';
+  v.play().catch(function(){});
+})();
+</script>
+</body>
+</html>
